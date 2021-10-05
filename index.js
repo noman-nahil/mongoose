@@ -9,6 +9,8 @@ mongoose.connect('mongodb://localhost:27017/my-students', {
     .then(() => console.log("Connected to MongoDB Successfully"))
     .catch(err => console.error("Connection Failed!!"));
 
+
+//Schema -> Defines the shape Documents
 const studentSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
@@ -23,3 +25,22 @@ const studentSchema = new mongoose.Schema({
     subjects: [{ name: String, marks: { type: Number, min: 0, max: 100 } }]
 
 });
+
+//mongoose model
+const Student = mongoose.model('Student', studentSchema);
+const student = new Student({
+    firstName: "Abdullah Al",
+    lastName: "Noman",
+    dob: new Date("03 Febuary 1997"),
+    passed: true,
+    hobbies: ["Swiming", "Cycling"],
+    parents: {
+        father: "Abu Yousuf",
+        mother: "Nazma Akter"
+    },
+    subjects: [{ name: "Math", marks: "91" }, { name: "Graphics", marks: "93" }]
+})
+
+student.save()
+    .then(data => console.log(data))
+    .catch(err => console.log(err._message));
