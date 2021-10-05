@@ -48,6 +48,8 @@ student.save()
 
     */
 
+
+//create    
 //async wait 
 async function createStudent() {
     const student = new Student({
@@ -65,4 +67,12 @@ async function createStudent() {
     const data = await student.save();
     console.log(data);
 }
-createStudent();
+//createStudent();
+
+//Read data
+async function readData() {
+    const studentData = await Student.find();//limit() sort() select({firstName:1,lastName:1})
+    console.log(studentData);
+}
+
+readData();
