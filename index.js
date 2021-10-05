@@ -28,6 +28,7 @@ const studentSchema = new mongoose.Schema({
 
 //mongoose model
 const Student = mongoose.model('Student', studentSchema);
+/*
 const student = new Student({
     firstName: "Abdullah Al",
     lastName: "Noman",
@@ -39,8 +40,29 @@ const student = new Student({
         mother: "Nazma Akter"
     },
     subjects: [{ name: "Math", marks: "91" }, { name: "Graphics", marks: "93" }]
-})
+});
 
 student.save()
     .then(data => console.log(data))
     .catch(err => console.log(err._message));
+
+    */
+
+//async wait 
+async function createStudent() {
+    const student = new Student({
+        firstName: "Abdur",
+        lastName: "Rahman",
+        dob: new Date("03 June 1998"),
+        passed: true,
+        hobbies: ["Swiming", "Cycling"],
+        parents: {
+            father: "Nurul Amin",
+            mother: "Momotaz"
+        },
+        subjects: [{ name: "Accounting", marks: "91" }, { name: "Marketing", marks: "93" }]
+    });
+    const data = await student.save();
+    console.log(data);
+}
+createStudent();
