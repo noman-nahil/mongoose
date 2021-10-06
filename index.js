@@ -84,9 +84,9 @@ async function createStudent() {
 async function createStudent() {
     try {
         const data = await Student.create({
-            firstName: "Jubayer",
-            lastName: "khan",
-            dob: new Date("18 June 2001"),
+            firstName: "Naim",
+            //lastName: "khan",
+            dob: new Date("18 June 1997"),
             passed: true,
             hobbies: [],
             parents: {
@@ -98,9 +98,10 @@ async function createStudent() {
         console.log(data)
     }
     catch (err) {
-        console.log(err.message)
+        for (field in err.errors) {
+            console.log(err.errors[field].message)
+        }
     }
-
 }
 createStudent();
 
