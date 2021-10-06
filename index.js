@@ -76,3 +76,13 @@ async function readData() {
 }
 
 readData();
+
+async function updateData(id) {
+    //receive 2 paratmeters ,1st ->
+    const studentUpdate = await Student.updateOne(
+        { _id: id },
+        { $set: { passed: false } });
+    console.log(studentUpdate);
+}
+updateData('615c7de38b7dbd01f4a77fa7');
+
