@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost:27017/my-students', {
 //Schema -> Defines the shape Documents
 const studentSchema = new mongoose.Schema({
     firstName: String,
-    lastName: String,
+    lastName: { type: String, required: [true, "Please insert lastname"] },
     dob: Date,
     entryDate: { type: Date, default: Date.now },
     passed: Boolean,
@@ -70,19 +70,25 @@ async function createStudent() {
 }*/
 //createStudent();
 async function createStudent() {
-    const data = await Student.create({
-        firstName: "Fahim",
-        lastName: "Abdullah",
-        dob: new Date("18 June 1999"),
-        passed: true,
-        hobbies: ["Swiming", "Cycling"],
-        parents: {
-            father: "Jakir Abdullah",
-            mother: "Pretty"
-        },
-        subjects: [{ name: "Physics", marks: "82" }, { name: "Chemistry", marks: "87" }]
-    });
-    console.log(data)
+    try {
+        const data = await Student.create({
+            firstName: "Jubayer",
+            //lastName: "khan",
+            dob: new Date("18 June 1999"),
+            passed: true,
+            hobbies: ["Swiming", "Cycling"],
+            parents: {
+                father: "Jakir",
+                mother: "Sima"
+            },
+            subjects: [{ name: "Physics", marks: "82" }, { name: "Chemistry", marks: "87" }]
+        });
+        console.log(data)
+    }
+    catch (err) {
+        console.log(err.message)
+    }
+
 }
 createStudent();
 
