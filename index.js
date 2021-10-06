@@ -51,6 +51,7 @@ student.save()
 
 //create    
 //async wait 
+/*
 async function createStudent() {
     const student = new Student({
         firstName: "Abdur",
@@ -66,33 +67,50 @@ async function createStudent() {
     });
     const data = await student.save();
     console.log(data);
-}
+}*/
 //createStudent();
+async function createStudent() {
+    const data = await Student.create({
+        firstName: "Fahim",
+        lastName: "Abdullah",
+        dob: new Date("18 June 1999"),
+        passed: true,
+        hobbies: ["Swiming", "Cycling"],
+        parents: {
+            father: "Jakir Abdullah",
+            mother: "Pretty"
+        },
+        subjects: [{ name: "Physics", marks: "82" }, { name: "Chemistry", marks: "87" }]
+    });
+    console.log(data)
+}
+createStudent();
+
 
 //Read data
-async function readData() {
+/*async function readData() {
     const studentData = await Student.find();//limit() sort() select({firstName:1,lastName:1})
     console.log(studentData);
-}
+}*/
 
 //readData();
 
 
 //update data
-async function updateData(id) {
+/*async function updateData(id) {
     //receive 2 paratmeters ,1st ->
     const studentUpdate = await Student.updateOne(
         { _id: id },
         { $set: { passed: false } });
     console.log(studentUpdate);
-}
+}*/
 //updateData('615c7de38b7dbd01f4a77fa7');
 
 //Delete data
 
-async function deleteData(id) {
+/*async function deleteData(id) {
     const studentDelete = await Student.deleteOne(
         { _id: id });
 }
 
-deleteData('615c7de58914b6dbddc574c6');
+deleteData('615c7de58914b6dbddc574c6');*/
